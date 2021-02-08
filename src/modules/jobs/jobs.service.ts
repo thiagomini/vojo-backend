@@ -22,7 +22,7 @@ export class JobsService {
 
   async updateOne(user: IUser, id: string, data: JobUpdateDto): Promise<object> {
       const update = { ...data, updatedBy: user.id }
-      const options = { new: true };
+      const options = { new: true, lean: true };
 
       try {
        await this.jobModel.findById(id).exec();
@@ -35,6 +35,6 @@ export class JobsService {
       }
 
      const updatedJob = await this.jobModel.findByIdAndUpdate(id, update, options).exec();
-     return updatedJob;
+     return updatedJob
   }
 }

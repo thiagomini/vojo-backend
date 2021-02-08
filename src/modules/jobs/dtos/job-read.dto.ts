@@ -16,8 +16,7 @@ export class JobReadDto {
     readonly education: string
     readonly open: boolean
 
-    @Transform(compensation => new CompensationReadDto(compensation))
-    compensation: object
+    compensation: CompensationReadDto
 
     @Transform(id => id.toJSON())
     _id: object

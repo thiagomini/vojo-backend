@@ -38,7 +38,7 @@ export class JobsController {
   async updateOne(@GetUser() user: IUser, @Param('id') id: string, @Body() jobUpdateDto: JobUpdateDto) {
     if (!isNotEmptyObject(jobUpdateDto)) throw new HttpException('Ao menos um parâmetro válido deve ser enviado', HttpStatus.UNPROCESSABLE_ENTITY);
     const updatedJob = await this.jobsService.updateOne(user, id, jobUpdateDto);
-    return updatedJob;
+    return new JobReadDto(updatedJob);
   }
 
 }
