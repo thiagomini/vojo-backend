@@ -7,22 +7,22 @@ import {
   Param,
   Put,
   UseGuards,
-  UseInterceptors
-} from '@nestjs/common'
-import { AuthGuard } from '@nestjs/passport'
+  UseInterceptors,
+} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 
-import { JobsService } from './jobs.service'
-import { JobReadDto } from './dtos/job-read.dto'
+import { JobsService } from './jobs.service';
+import { JobReadDto } from './dtos/job-read.dto';
 
-import { IJob } from '@/modules/jobs/interfaces/job.interface'
-import {JobUpdateDto} from "@/modules/jobs/dtos/job-update.dto";
-import {IUser} from "@/modules/users/interfaces/user.interface";
-import {GetUser} from "@/modules/auth/decorators/get-user.decorator";
-import {isNotEmptyObject} from "class-validator";
+import { JobUpdateDto } from '@/modules/jobs/dtos/job-update.dto';
+import { IUser } from '@/modules/users/interfaces/user.interface';
+import { GetUser } from '@/modules/auth/decorators/get-user.decorator';
+import { isNotEmptyObject } from 'class-validator';
 
 @Controller('v3/jobs')
 export class JobsController {
-  constructor(private readonly jobsService: JobsService) { }
+  constructor(private readonly jobsService: JobsService) {
+  }
 
   @UseInterceptors(ClassSerializerInterceptor)
   @Get()

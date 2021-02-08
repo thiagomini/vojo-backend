@@ -9,8 +9,8 @@ import {
     IsString,
     ValidateNested
 } from "class-validator";
-import {LocationUpdateDto} from "@/modules/jobs/dtos/location-update.dto";
-import {Transform, Type} from "class-transformer";
+import { LocationUpdateDto } from "@/modules/jobs/dtos/location-update.dto";
+import { Type } from "class-transformer";
 
 
 export class JobUpdateDto {
@@ -83,4 +83,8 @@ export class JobUpdateDto {
     @IsOptional()
     @IsBoolean()
     readonly open: boolean
+
+    constructor(partial) {
+        Object.assign(this, partial);
+    }
 }
