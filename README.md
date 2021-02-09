@@ -40,7 +40,8 @@ $ yarn run test:cov
 
 ## Endpoints implementados
 * **GET** `/v3/jobs` : listagem de vagas disponíveis.
-* **PUT** `/v3/jobs/:id` : atualização de vaga específica.
+* **PUT** `/v3/jobs/:id` : atualização de vaga específica (Nessa rota, é necessário enviar apenas o campo que deseja atualizar, e não o objeto inteiro.
+Por exemplo, se desejar atualizar o campo "education", deve ser enviado apenas { "education": "\<novo valor\>" }
 
 ## Notas adicionais e observações
 
