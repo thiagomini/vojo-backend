@@ -1,11 +1,11 @@
-import { Exclude, Transform } from 'class-transformer'
+import { Exclude, Transform, Type } from 'class-transformer';
 import {CompensationReadDto} from "@/modules/jobs/dtos/compensation-read.dto";
+import { ValidateNested } from 'class-validator';
 
 export class JobReadDto {
     readonly company: string
     readonly imageUrl: string
     readonly location: object
-    readonly requirements: Array<string>
     readonly active: boolean
     readonly information: string
     readonly title: string
@@ -16,7 +16,12 @@ export class JobReadDto {
     readonly education: string
     readonly open: boolean
 
+    @ValidateNested({ each: true })
+    @Type(() => CompensationReadDto)
     compensation: CompensationReadDto
+
+    @Transform(requirements => Array.isArray(requirements) ? requirements : [requirements])
+    requirements: Array<string>
 
     @Transform(id => id.toJSON())
     _id: object
