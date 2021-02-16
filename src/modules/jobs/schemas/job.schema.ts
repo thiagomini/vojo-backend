@@ -14,7 +14,12 @@ export const JobSchema = new mongoose.Schema({
   location: { city: String, state: String, country: String },
   requirements: [String],
   active: Boolean,
-  compensation: Map,
+  compensation: {
+    amount: Number,
+    currency: { type: String, trim: true },
+    recurrency: { type: String, trim: true },
+    isVariable: Boolean
+  },
   information: String,
   title: String,
   assignments: [String],
