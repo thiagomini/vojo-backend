@@ -1,9 +1,9 @@
 import { Transform } from "class-transformer";
 
 function _getNumericAmount(amount): number {
-    return Number.isFinite(amount)
-        ? amount
-        : Number(amount.toJSON().$numberDecimal)
+    return (amount.toJSON)
+        ? Number(amount.toJSON().$numberDecimal)
+        : Number(amount)
 }
 
 export class CompensationReadDto {

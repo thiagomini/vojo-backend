@@ -1,5 +1,4 @@
 import {
-    IsAlpha,
     IsArray,
     IsBoolean,
     IsInt,
@@ -11,6 +10,7 @@ import {
 } from "class-validator";
 import { LocationUpdateDto } from "@/modules/jobs/dtos/location-update.dto";
 import { Type } from "class-transformer";
+import CompensationUpdateDto from '@/modules/jobs/dtos/compensation-update.dto';
 
 
 export class JobUpdateDto {
@@ -18,7 +18,6 @@ export class JobUpdateDto {
     @IsOptional()
     @IsNotEmpty()
     @IsString()
-    @IsAlpha()
     readonly company: string
 
     @IsOptional()
@@ -50,7 +49,9 @@ export class JobUpdateDto {
 
     @IsOptional()
     @IsObject()
-    readonly compensation: object
+    @ValidateNested()
+    @Type(() => CompensationUpdateDto )
+    compensation: CompensationUpdateDto
 
     @IsOptional()
     @IsNotEmpty()
